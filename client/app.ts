@@ -1,32 +1,33 @@
-
-
 import 'reflect-metadata';
-import { Component } from '@angular/core';
-// REPLACED BY THE BELLOW ONE import { bootstrap } from '@angular/platform-browser-dynamic';
+import { Component, provide } from '@angular/core';
 import { bootstrap } from 'angular2-meteor-auto-bootstrap';
 import { provideRouter, ROUTER_DIRECTIVES, RouterConfig } from '@angular/router';
+import { APP_BASE_HREF } from '@angular/common';
 
-import { Users } from '../collections/users.ts';
-import { UsersForm } from './imports/users-form/users-form'
-import template from './app.html';
+import { UsersList } from './imports/users-list/users-list.ts';
+import { UserDetails } from './imports/user-details/user-details.ts';
+//import { template } from './app.html';
 
 @Component({
   selector: 'app',
-  template,
-  directives: [UsersForm, ROUTER_DIRECTIVES]
+  template : `
+    <router-outlet></router-outlet>
+  `,
+  directives: [ROUTER_DIRECTIVES]
 })
 
-class a2meteorhr {
-    users : Mongo.Cursor<Object>;
+class a2meteorhr {}
 
-    constructor(){
-        this.users = Users.find();
-    }
+  const routes: RouterConfig = [
+    {path: '',               component: UsersList },
+    {path: 'user/:userId',   component: UserDetails }
+  ]
 
-    removeUser(user){
-        Users.remove(user._id);
-        console.log("Removed " + user.name)
-    }
- }
+  const APP_ROUTER_PROVIDERS = [
+    provideRouter(routes)
+  ];
 
-bootstrap(a2meteorhr);
+bootstrap(a2meteorhr,
+          [APP_ROUTER_PROVIDERS, 
+           provide(APP_BASE_HREF,{ useValue: '/' })]
+          );
