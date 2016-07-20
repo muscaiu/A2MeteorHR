@@ -31,6 +31,5 @@ export class UsersForm {
             });
         }
         console.log(this.usersForm.value);
-        console.log(this.usersForm.valid);
     }
 }

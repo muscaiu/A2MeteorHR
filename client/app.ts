@@ -24,6 +24,7 @@ class a2meteorhr {
 
     removeUser(user){
         Users.remove(user._id);
+        console.log("Removed " + user.name)
     }
  }
 
