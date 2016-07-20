@@ -1,13 +1,15 @@
 import 'reflect-metadata';
 import { Component } from '@angular/core';
 import { FormBuilder, ControlGroup, Validators } from '@angular/common';
+import { ROUTER_DIRECTIVES} from '@angular/router';
 
 import { Users } from '../../../collections/users.ts'
 import template from './users-form.html';
 
 @Component({
     selector: 'users-form',
-    template
+    template,
+    directives: [ROUTER_DIRECTIVES]
 })
 
 export class UsersForm {

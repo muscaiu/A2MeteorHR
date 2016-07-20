@@ -1,6 +1,15 @@
-<header *ngIf="user">
+<form (submit)="saveUser(user)">
+    
+    <label>Name</label>
+    <input [(ngModel)]="user.name" type="text">
 
-    <h2> {{ user.name }}</h2>
-    <h2> {{ user.email }}</h2>
+    <label>Email</label>
+    <input [(ngModel)]="user.email" type="text">
 
-</header>
+    <button type="submit">Save</button>
+
+    <button [routerLink]="['/']">Cancel</button>
+
+</form>
+
+    {{ user.name }}
