@@ -21,8 +21,6 @@ export class UsersForm {
             name: ['', Validators.required],
             email: [''] 
         });
-        console.log(this.usersForm.value);
-        console.log(this.usersForm.valid);
     }
 
     addUser(user){
@@ -32,5 +30,7 @@ export class UsersForm {
                 email: user.email
             });
         }
+        console.log(this.usersForm.value);
+        console.log(this.usersForm.valid);
     }
 }

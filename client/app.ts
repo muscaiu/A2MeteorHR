@@ -21,6 +21,10 @@ class a2meteorhr {
     constructor(){
         this.users = Users.find();
     }
+
+    removeUser(user){
+        Users.remove(user._id);
+    }
  }
 
 bootstrap(a2meteorhr);
